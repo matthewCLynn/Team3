@@ -52,7 +52,7 @@ public class HomeController
 			String genreUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + key;
 			GenreResults gResults = rt.getForObject(genreUrl, GenreResults.class);
 			int updatedInput = Genre.findIdFromName(input, gResults.getGenres());
-			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&genre_id=" + updatedInput + "&page=";
+			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&with_genres=" + updatedInput + "&page=";
 		}
 		String url2 = url + "1";
 		Results output = rt.getForObject(url2, Results.class);
