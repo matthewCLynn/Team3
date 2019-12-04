@@ -9,6 +9,12 @@
 <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-WTtvlZJeRyCiKUtbQ88X1x9uHmKi0eHCbQ8irbzqSLkE0DpAZuixT5yFvgX0CjIu" crossorigin="anonymous">
 </head>
 <body>
-
+	<form action="search-movie">
+		<select>
+			<option name="category" value="title"></option>
+			<option name="category" value="genre"></option>
+			<option name="category" value=""></option>
+		</select>
+	</form>
 </body>
 </html>
