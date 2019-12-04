@@ -11,10 +11,24 @@
 <body>
 	<form action="search-movie">
 		<select>
-			<option name="category" value="title"></option>
-			<option name="category" value="genre"></option>
-			<option name="category" value=""></option>
+			<option name="category" value="title">Title</option>
+			<option name="category" value="genre">Genre</option>
+			<option name="category" value="rating">Rating</option>
 		</select>
+		<input type="text" name="input"/>
 	</form>
-</body>
+	<table>
+  <tr>
+    <th>test</th>
+    <th>test</th>
+  </tr>
+  <c:forEach var="t" items="${test.results }">
+  <tr>
+    <td>${t.title }</td>
+    <td>${t.vote_count }</td>
+  </tr>
+  </c:forEach>
+</table>
+
+	</body>
 </html>
