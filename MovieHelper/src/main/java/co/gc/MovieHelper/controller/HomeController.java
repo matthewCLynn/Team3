@@ -28,9 +28,8 @@ public class HomeController
 	@RequestMapping("/")
 	public ModelAndView homePage()
 	{
-		int pageNum = 1;
 		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key+"&page=";
-		String url2 = url + pageNum;
+		String url2 = url + 1;
 		Results output = rt.getForObject(url2, Results.class);
 		ArrayList<Results> arrayOfResults = new ArrayList<>();
 		arrayOfResults.add(output);
@@ -40,21 +39,30 @@ public class HomeController
 	}
 	
 	@RequestMapping("search-movie")
-	public ModelAndView searchDatabase(String filterChoice, String filterInput, String name)
+	public ModelAndView searchDatabase(String category, String input, int page)
 	{
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "Token "+key);
-		headers.add(HttpHeaders.USER_AGENT, "Testing!");
-		headers.add("Accept",  MediaType.APPLICATION_JSON_VALUE);
-		
-		
-		
-		return null;
+		String url = "";
+		if(category.equals("title"))
+		{
+			System.out.println(input);
+			url = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=" + input + "&page=";
+		}
+		else
+		{
+			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&"+ category + "=" + input + "&page=";
+		}
+		String url2 = url + "1";
+		Results output = rt.getForObject(url2, Results.class);
+		ArrayList<Results> arrayOfResults = new ArrayList<>();
+		arrayOfResults.add(output);
+		arrayOfResults=loopPages(url, arrayOfResults);
+		System.out.println(arrayOfResults.get(0));
+		return new ModelAndView("index", "test", arrayOfResults);
 	}
 	
 	public ArrayList<Results> loopPages(String url, ArrayList<Results> arrayOfResults)
 	{
-		for(int i = 1; i<pageCount; i++)
+		for(int i = 2; i<pageCount + 1; i++)
 		{
 			String tempUrl = url;
 			arrayOfResults.add(rt.getForObject(tempUrl+i, Results.class));

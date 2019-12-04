@@ -19,7 +19,7 @@
 			<option value="genre">Genre</option>
 			<option value="rating">Rating</option>
 		</select> <input type="text" name="input" /> <input type="number"
-			name="pageCount" placeholder="# of pages" /> <input type="submit"
+			name="page" placeholder="# of pages" /> <input type="submit"
 			value="Search" />
 	</form>
 	<table>
