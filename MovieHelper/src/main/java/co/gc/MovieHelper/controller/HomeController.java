@@ -1,11 +1,10 @@
 package co.gc.MovieHelper.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
@@ -24,13 +23,20 @@ public class HomeController
 	String token;
 	
 	RestTemplate rt = new RestTemplate();
+	public int pageCount =5;
 	
 	@RequestMapping("/")
 	public ModelAndView homePage()
 	{
-		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key;
-		Results output = rt.getForObject(url, Results.class);
-		return new ModelAndView("index", "test", output);
+		int pageNum = 1;
+		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key+"&page=";
+		String url2 = url + pageNum;
+		Results output = rt.getForObject(url2, Results.class);
+		ArrayList<Results> arrayOfResults = new ArrayList<>();
+		arrayOfResults.add(output);
+		arrayOfResults=loopPages(url, arrayOfResults);
+//		System.out.println(arrayOfResults.get(4).getResults().get(3));
+		return new ModelAndView("index", "test", arrayOfResults);
 	}
 	
 	@RequestMapping("search-movie")
@@ -46,6 +52,16 @@ public class HomeController
 		return null;
 	}
 	
+	public ArrayList<Results> loopPages(String url, ArrayList<Results> arrayOfResults)
+	{
+		for(int i = 1; i<pageCount; i++)
+		{
+			String tempUrl = url;
+			arrayOfResults.add(rt.getForObject(tempUrl+i, Results.class));
+		}
+		
+		return arrayOfResults;
+	}
 	
 
 }
