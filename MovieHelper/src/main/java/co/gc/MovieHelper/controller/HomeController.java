@@ -22,12 +22,12 @@ public class HomeController
 	String token;
 	
 	RestTemplate rt = new RestTemplate();
-	public int pageCount =5;
+	public int pageCount = 5;
 	
 	@RequestMapping("/")
 	public ModelAndView homePage()
 	{
-		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key+"&page=";
+		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&page=";
 		String url2 = url + 1;
 		Results output = rt.getForObject(url2, Results.class);
 		ArrayList<Results> arrayOfResults = new ArrayList<>();
