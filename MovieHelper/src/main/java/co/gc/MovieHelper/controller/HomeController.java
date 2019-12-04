@@ -54,6 +54,10 @@ public class HomeController
 			int updatedInput = Genre.findIdFromName(input, gResults.getGenres());
 			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&with_genres=" + updatedInput + "&page=";
 		}
+		else if (category.equals("rating"))
+		{
+			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&certification_country=US&certification=" + input + "&page=";
+		}
 		String url2 = url + "1";
 		Results output = rt.getForObject(url2, Results.class);
 		ArrayList<Results> arrayOfResults = new ArrayList<>();
