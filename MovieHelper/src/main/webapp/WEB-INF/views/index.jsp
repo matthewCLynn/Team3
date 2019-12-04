@@ -16,6 +16,7 @@
 			<option name="category" value="rating">Rating</option>
 		</select>
 		<input type="text" name="input"/>
+		<input type="number" name="pageCount" placeholder="# of pages"/>
 	</form>
 	<table>
   <tr>
