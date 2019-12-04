@@ -22,12 +22,14 @@
     <th>test</th>
     <th>test</th>
   </tr>
-  <c:forEach var="t" items="${test.results }">
+ <c:forEach var = "testResults" items = "${test }">
+  <c:forEach var="t" items="${testResults.results }">
   <tr>
     <td>${t.title }</td>
     <td>${t.vote_count }</td>
   </tr>
   </c:forEach>
+ </c:forEach>
 </table>
 
 	</body>
