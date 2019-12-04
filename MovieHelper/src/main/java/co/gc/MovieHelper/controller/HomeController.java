@@ -21,9 +21,9 @@ public class HomeController
 		
 		return new ModelAndView("index");
 	}
-	
-	@RequestMapping("search-movie")
-	public ModelAndView 
+//	
+//	@RequestMapping("search-movie")
+//	public ModelAndView (String searchCategory,)
 	
 	
 
