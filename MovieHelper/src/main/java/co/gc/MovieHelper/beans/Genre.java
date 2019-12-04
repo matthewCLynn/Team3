@@ -1,5 +1,7 @@
 package co.gc.MovieHelper.beans;
 
+import java.util.ArrayList;
+
 public class Genre {
 	
 	private int id;
@@ -29,6 +31,14 @@ public class Genre {
 	@Override
 	public String toString() {
 		return "Genre [id=" + id + ", name=" + name + "]";
+	}
+	public static int findIdFromName(String name, ArrayList<Genre> genres) {
+		for (Genre g : genres) {
+			if (name.equalsIgnoreCase(g.getName())) {
+				return g.getId();
+			}
+		}
+		return 0;
 	}
 
 }

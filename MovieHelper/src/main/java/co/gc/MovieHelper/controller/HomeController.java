@@ -3,14 +3,13 @@ package co.gc.MovieHelper.controller;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
-import co.gc.MovieHelper.beans.Movie;
+import co.gc.MovieHelper.beans.Genre;
+import co.gc.MovieHelper.beans.GenreResults;
 import co.gc.MovieHelper.beans.Results;
 
 @Controller
@@ -48,9 +47,12 @@ public class HomeController
 			System.out.println(input);
 			url = "https://api.themoviedb.org/3/search/movie?api_key=" + key + "&query=" + input + "&page=";
 		}
-		else
+		else if (category.equals("genre"))
 		{
-			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&"+ category + "=" + input + "&page=";
+			String genreUrl = "https://api.themoviedb.org/3/genre/movie/list?api_key=" + key;
+			GenreResults gResults = rt.getForObject(genreUrl, GenreResults.class);
+			int updatedInput = Genre.findIdFromName(input, gResults.getGenres());
+			url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&genre_id=" + updatedInput + "&page=";
 		}
 		String url2 = url + "1";
 		Results output = rt.getForObject(url2, Results.class);
