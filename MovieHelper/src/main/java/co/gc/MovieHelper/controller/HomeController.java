@@ -28,18 +28,9 @@ public class HomeController
 	@RequestMapping("/")
 	public ModelAndView homePage()
 	{
-		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key + "&language=en-US&include_adult=false&include_video=false&page=1";
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "Bearer " + token);
-		headers.add(HttpHeaders.USER_AGENT, "Testing!");
-		headers.add("Accept",  MediaType.APPLICATION_JSON_VALUE);
-		ResponseEntity<Results> response = rt.exchange(url, HttpMethod.GET, new HttpEntity<String>("parameters",headers), Results.class);
+		String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + key;
 		Results output = rt.getForObject(url, Results.class);
-		
-		String url2 = "https://api.themoviedb.org/3/movie/550?api_key=676b3eb17b0eafb015088ceeb38a37c0";
-		System.out.println(	rt.getForObject(url2, Movie.class).getTitle());
-		return null;
-//		return new ModelAndView("index", "test", response.getBody());
+		return new ModelAndView("index", "test", output);
 	}
 	
 	@RequestMapping("search-movie")
