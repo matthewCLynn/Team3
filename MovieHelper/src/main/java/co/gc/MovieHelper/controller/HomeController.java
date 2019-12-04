@@ -41,6 +41,7 @@ public class HomeController
 	@RequestMapping("search-movie")
 	public ModelAndView searchDatabase(String category, String input, int page)
 	{
+		pageCount = page;
 		String url = "";
 		if(category.equals("title"))
 		{
