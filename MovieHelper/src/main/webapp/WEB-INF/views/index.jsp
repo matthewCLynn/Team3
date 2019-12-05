@@ -29,7 +29,8 @@
 				
 					${t.title }<br><img src ="https://image.tmdb.org/t/p/w185_and_h278_bestv2${t.poster_path }">
 			<br>
-			<a class = "btn btn-secondary" href ="details?id=${t.id }" >More Details</a>
+			<a class = "btn btn-secondary" href ="details?id=${t.id }" >More Details</a> 
+			<a class = "btn btn-danger" href ="add-to-list?id=${t.id }">Add to Watchlist</a>
 			<br><br>
 			</c:forEach>
 		</c:forEach>
