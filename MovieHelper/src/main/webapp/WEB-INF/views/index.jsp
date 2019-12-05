@@ -22,20 +22,18 @@
 			name="page" placeholder="# of pages" /> <input type="submit"
 			value="Search" />
 	</form>
-	<table>
-		<tr>
-			<th>test</th>
-			<th>test</th>
-		</tr>
+			<h3>Movie Title</h3>
+			<br>
 		<c:forEach var="r" items="${test }">
 			<c:forEach var="t" items="${r.results }">
-				<tr>
-					<td>${t.title }</td>
-					<td>${t.vote_count }</td>
-				</tr>
+				
+					${t.title }<br><img src ="https://image.tmdb.org/t/p/w185_and_h278_bestv2${t.poster_path }">
+			<br>
+			<a class = "btn btn-secondary" href ="details" >More Details</a>
+			<br><br>
 			</c:forEach>
 		</c:forEach>
-	</table>
+
 
 </body>
 </html>

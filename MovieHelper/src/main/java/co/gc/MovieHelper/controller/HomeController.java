@@ -67,6 +67,12 @@ public class HomeController
 		return new ModelAndView("index", "test", arrayOfResults);
 	}
 	
+	@RequestMapping("user-list")
+	public ModelAndView moreDetails()
+	{
+		return new ModelAndView("details");
+	}
+	
 	public ArrayList<Results> loopPages(String url, ArrayList<Results> arrayOfResults)
 	{
 		for(int i = 2; i < pageCount + 1; i++)
