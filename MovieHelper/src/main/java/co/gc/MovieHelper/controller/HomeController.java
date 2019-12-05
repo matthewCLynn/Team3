@@ -32,7 +32,7 @@ public class HomeController
 		Results output = rt.getForObject(url2, Results.class);
 		ArrayList<Results> arrayOfResults = new ArrayList<>();
 		arrayOfResults.add(output);
-		arrayOfResults=loopPages(url, arrayOfResults);
+		arrayOfResults = loopPages(url, arrayOfResults);
 //		System.out.println(arrayOfResults.get(4).getResults().get(3));
 		return new ModelAndView("index", "test", arrayOfResults);
 	}
@@ -62,14 +62,14 @@ public class HomeController
 		Results output = rt.getForObject(url2, Results.class);
 		ArrayList<Results> arrayOfResults = new ArrayList<>();
 		arrayOfResults.add(output);
-		arrayOfResults=loopPages(url, arrayOfResults);
+		arrayOfResults = loopPages(url, arrayOfResults);
 		System.out.println(arrayOfResults.get(0));
 		return new ModelAndView("index", "test", arrayOfResults);
 	}
 	
 	public ArrayList<Results> loopPages(String url, ArrayList<Results> arrayOfResults)
 	{
-		for(int i = 2; i<pageCount + 1; i++)
+		for(int i = 2; i < pageCount + 1; i++)
 		{
 			String tempUrl = url;
 			arrayOfResults.add(rt.getForObject(tempUrl+i, Results.class));
