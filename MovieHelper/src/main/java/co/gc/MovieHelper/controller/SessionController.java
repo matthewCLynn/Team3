@@ -24,7 +24,7 @@ public class SessionController {
 	HttpSession session;
 	
 	@RequestMapping("add-to-list")
-	public ModelAndView addToList(long id,ArrayList<Results> arrayOfResults) {
+	public ModelAndView addToList(long id) {
 		Movie movie = Movie.getMovieById(id, key);
 		List<Movie> list = getList();
 		list.add(movie);
@@ -32,7 +32,7 @@ public class SessionController {
 		for (Movie m : getList()) {
 		System.out.println(m.getTitle());
 		}
-		return new ModelAndView("index","test", arrayOfResults);
+		return new ModelAndView("index");
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -48,4 +48,13 @@ public class SessionController {
 		
 	}
 	
+	@RequestMapping("user-list")
+	public ModelAndView getUserList()
+	{
+		for (Movie m : getList()) {
+			System.out.println(m.getTitle());
+			}
+		List<Movie> list = getList();
+		return new ModelAndView("user-list","movies",list);
+	}
 }

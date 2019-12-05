@@ -10,6 +10,16 @@
 </head>
 <body>
 
+<table>
+  <tr>
+    <th>Movie</th>
+  </tr>
+  <c:forEach var = "m" items = "${movies}">
+  <tr>
+    <td>${m.title} </td>
+  </tr>
+  </c:forEach>
+</table>
 
 
 </body>

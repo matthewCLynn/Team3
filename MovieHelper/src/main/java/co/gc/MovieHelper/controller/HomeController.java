@@ -65,6 +65,7 @@ public class HomeController
 		arrayOfResults.add(output);
 		arrayOfResults = loopPages(url, arrayOfResults);
 		System.out.println(arrayOfResults.get(0));
+//		arrayOfResults.get(0).getResults().get(0).getBackdrop_path()
 		return new ModelAndView("index", "test", arrayOfResults);
 	}
 	
@@ -73,6 +74,7 @@ public class HomeController
 	{
 		Movie movie = Movie.getMovieById(id, key);
 		System.out.println(movie.getTitle());
+	
 		return new ModelAndView("details","movieDeets", movie);
 	}
 	
