@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import co.gc.MovieHelper.beans.Movie;
+import co.gc.MovieHelper.beans.Results;
 
 @Controller
 public class SessionController {
@@ -23,7 +24,7 @@ public class SessionController {
 	HttpSession session;
 	
 	@RequestMapping("add-to-list")
-	public ModelAndView addToList(long id) {
+	public ModelAndView addToList(long id,ArrayList<Results> arrayOfResults) {
 		Movie movie = Movie.getMovieById(id, key);
 		List<Movie> list = getList();
 		list.add(movie);
@@ -31,7 +32,7 @@ public class SessionController {
 		for (Movie m : getList()) {
 		System.out.println(m.getTitle());
 		}
-		return null;
+		return new ModelAndView("index","test", arrayOfResults);
 	}
 	
 	@SuppressWarnings("unchecked")
