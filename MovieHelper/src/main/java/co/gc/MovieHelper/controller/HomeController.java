@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import co.gc.MovieHelper.beans.Genre;
 import co.gc.MovieHelper.beans.GenreResults;
+import co.gc.MovieHelper.beans.Movie;
 import co.gc.MovieHelper.beans.Results;
 
 @Controller
@@ -67,11 +68,13 @@ public class HomeController
 		return new ModelAndView("index", "test", arrayOfResults);
 	}
 	
-	@RequestMapping("user-list")
-	public ModelAndView moreDetails()
+	@RequestMapping("details")
+	public ModelAndView moreDetails(long id )
 	{
-		return new ModelAndView("details");
+		
+		return new ModelAndView("details","movieDeets", getMovieById(id));
 	}
+	
 	
 	public ArrayList<Results> loopPages(String url, ArrayList<Results> arrayOfResults)
 	{
@@ -80,6 +83,7 @@ public class HomeController
 			String tempUrl = url;
 			arrayOfResults.add(rt.getForObject(tempUrl+i, Results.class));
 		}
+		
 		
 		return arrayOfResults;
 	}

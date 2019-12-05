@@ -29,7 +29,7 @@
 				
 					${t.title }<br><img src ="https://image.tmdb.org/t/p/w185_and_h278_bestv2${t.poster_path }">
 			<br>
-			<a class = "btn btn-secondary" href ="details" >More Details</a>
+			<a class = "btn btn-secondary" href ="details?movie=${t.id }" >More Details</a>
 			<br><br>
 			</c:forEach>
 		</c:forEach>
