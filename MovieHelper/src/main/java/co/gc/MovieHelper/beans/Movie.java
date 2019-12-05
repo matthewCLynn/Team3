@@ -1,6 +1,12 @@
 package co.gc.MovieHelper.beans;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestTemplate;
+
 public class Movie {
+	
+	@Value("${movie.key}")
+	String key;
 
 	private double popularity;
 	private int vote_count;
@@ -39,6 +45,12 @@ public class Movie {
 		this.vote_average = vote_average;
 		this.overview = overview;
 		this.release_date = release_date;
+	}
+	
+	public Movie getMovieById(long id) {
+		RestTemplate rt = new RestTemplate();
+		String url = "https://api.themoviedb.org/3/search/movie/" + id + "?api_key=" + key;
+		return rt.getForObject(url, Movie.class);
 	}
 
 	public double getPopularity() {
