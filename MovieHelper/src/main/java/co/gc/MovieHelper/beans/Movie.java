@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.client.RestTemplate;
 
 public class Movie {
-	
-	@Value("${movie.key}")
-	String key;
+
 
 	private double popularity;
 	private int vote_count;
@@ -47,9 +45,10 @@ public class Movie {
 		this.release_date = release_date;
 	}
 	
-	public Movie getMovieById(long id) {
+	public static Movie getMovieById(long id, String key) {
 		RestTemplate rt = new RestTemplate();
-		String url = "https://api.themoviedb.org/3/search/movie/" + id + "?api_key=" + key;
+		String url = "https://api.themoviedb.org/3/movie/" + id + "?api_key=" + key;
+		System.out.println(url);
 		return rt.getForObject(url, Movie.class);
 	}
 

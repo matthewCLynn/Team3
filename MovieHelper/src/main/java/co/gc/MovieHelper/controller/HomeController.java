@@ -71,8 +71,9 @@ public class HomeController
 	@RequestMapping("details")
 	public ModelAndView moreDetails(long id )
 	{
-		
-		return new ModelAndView("details","movieDeets", getMovieById(id));
+		Movie movie = Movie.getMovieById(id, key);
+		System.out.println(movie.getTitle());
+		return new ModelAndView("details","movieDeets", movie);
 	}
 	
 	
