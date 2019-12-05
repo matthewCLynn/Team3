@@ -11,8 +11,12 @@
 	rel="stylesheet"
 	integrity="sha384-WTtvlZJeRyCiKUtbQ88X1x9uHmKi0eHCbQ8irbzqSLkE0DpAZuixT5yFvgX0CjIu"
 	crossorigin="anonymous">
+	<div align = "right">
+	<a class = "btn btn-primary" href ="user-list" >My Movie List</a>
+	</div>
 </head>
 <body>
+	<div style = "background-size: cover; background-image: url('https://image.tmdb.org/t/p/w185_and_h278_bestv2${test.get(0).getResults().get(0).getBackdrop_path() }')">
 	<form action="search-movie">
 		<select name="category">
 			<option value="title">Title</option>
@@ -35,6 +39,6 @@
 			</c:forEach>
 		</c:forEach>
 
-
+</div>
 </body>
 </html>
