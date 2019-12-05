@@ -25,7 +25,9 @@ public class SessionController {
 	@RequestMapping("add-to-list")
 	public ModelAndView addToList(long id) {
 		Movie movie = Movie.getMovieById(id, key);
-		getList().add(movie);
+		List<Movie> list = getList();
+		list.add(movie);
+		session.setAttribute("list", list);
 		for (Movie m : getList()) {
 		System.out.println(m.getTitle());
 		}
@@ -36,7 +38,6 @@ public class SessionController {
 	private ArrayList<Movie> getList() {
 
 		if (session.getAttribute("list") == null) {
-			
 			List<Movie> list = new ArrayList<Movie>();
 			session.setAttribute("list", list);
 			
